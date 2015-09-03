@@ -1,0 +1,13 @@
+package com.example.cannonbunny.game;
+
+public class WorldController {
+	
+	public WorldController(){
+		
+	}
+	
+	public void update(float deltaTime){
+		
+	}
+
+}
