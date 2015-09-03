@@ -1,0 +1,63 @@
+package com.example.cannonbunny;
+
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
+import com.example.cannonbunny.game.WorldController;
+import com.example.cannonbunny.game.WorldRenderer;
+
+public class CannonBunny extends ApplicationAdapter { 
+	
+	private WorldController world;
+	private WorldRenderer renderer;
+	private Boolean pause;
+	
+	@Override
+	public void create () {
+		world = new WorldController();
+		renderer = new WorldRenderer(world);
+		pause = false;
+	}
+
+	@Override
+	public void render () {
+		
+		if(!pause)
+			world.update(Gdx.graphics.getDeltaTime());
+		
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		renderer.render();
+		
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		// TODO Auto-generated method stub
+		super.resize(width, height);
+		renderer.resize(width, height);
+	}
+
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+		super.pause();
+		pause = true;
+	}
+
+	@Override
+	public void resume() {
+		// TODO Auto-generated method stub
+		super.resume();
+		pause = false;
+	}
+
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		super.dispose();
+		renderer.dispose();
+	}
+
+}
